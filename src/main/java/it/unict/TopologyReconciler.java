@@ -50,6 +50,10 @@ public class TopologyReconciler implements Reconciler<Topology> {
           );
         });
       }
+      node.getMetadata().getLabels().put(
+              "network.cost." + nodeName,
+              String.valueOf(minCost)
+      );
 
       client.nodes().withName(nodeName).patch(node);
     });
